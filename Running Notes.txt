@@ -1,0 +1,776 @@
+Support Engineer Role
+System Engineer
+Devops Engineer
+Cloud Engineer
+site reliabillity Engineer
+Infra admin
+
+Infra structure:
+................
+Data center
+Storage Components( objects 
+Networking Components
+computing componets( cpu , Ram) 
+
+
+DNS: Name servers Hosted zones,record sets
+
+How name will ber converted to Ip Address ( name Resolution)
+ 
+IP: Internet Protocal
+......................
+
+http://www.arikinfotech.com/
+
+https://www.facebook.com/
+
+datacenter..........>computing components......>storage components.....>networking components....>client
+
+onprem: our own datacenter
+10TB	 
+
+projects........>powerstations........>substation.......>transformers....>poles......>house
+
+advantages and disadvantages of on prem:
+........................................
+cost+maintainance
+in cloud pay only for resource
+cloud:
+
+aws, Azure, GCP.........
+
+dc....> region
+
+availabillity zones
+
+types of cloud:
+...............
+public cloud
+private cloud 
+Hybrid cloud
+
+
+Public cloud:
+.........
+Resources can be shared on same hardware and software
+
+
+private cloud:
+.............
+resources can't be shared
+
+Hybrid cloud:
+...........
+its a combination of public and private cloud
+
+cloud service models:
+.....................
+IAAS: Infra as a servicve
+PAAS: Platform as a service
+SAAS: Software as a servivce
+
+
+
+ec2: Elastic compute cloud
+
+
+
+protocal: ssh 
+port number:22
+
+Amazonlinux: ec2-user
+Redhat linux: ec2-user
+ubuntu: ubuntu
+centos: centos
+windows: Administator
+
+linux commands:
+................
+pwd
+cd
+mkdir
+touch <filename>
+echo "<your data>  > <filename>
+cat <filename>
+ls or ll
+
+
+Lab1: Launch a linux instance
+create a directory with your name
+create file in that directory
+insert the data into that file
+
+
+bash shell
+sh   shell
+ksh  shell
+c    shell
+
+#cat /etc/shells
+
+/bin/sh
+/bin/bash
+/sbin/nologin
+/bin/dash
+/bin/tcsh
+/bin/csh
+
+#echo $SHELL -> to see the present shell in the server.
+
+#which $SHELL command will give you current shell and we can see available shell in /etc/shells file
+
+
+What do we do here?
+We are going to learn aws cloud concepts like compute, storage, databases,load balancers,
+DNS etc and how to set up those services to our coustomers to deploy their Application.
+
+syllabus:
+.........
+EC2
+ a. Loadbalancers
+ b. Autoscaling
+ c.ami
+IAM
+VPC
+EBS
+S3
+CLOUD FRONT
+cloud watch
+SNS
+SES
+RDS
+ROUTE53
+ECS
+LAMBDA(TIME PERMITS)
+
+Region: Reagion means geographical location.
+ .......
+ Avaliabillity zone: Each region is compund of two or more Az. AZ are ment for High Avaliabillity.
+ 
+ 
+ to open a file in vi editor
+ 
+ vi <filename>
+ to insert the data in vi editor
+ press i in your keyboard means ypur are switching to insert mode in vi  editor
+ insert your data
+to save the data in vi editor
+esc:wq!
+if you don't want to save the data 
+esc:q!
+How to change the hostname
+hostnamectl set-hostname <hostname_name>
+
+apache
+nginx
+
+in redat/centos/amazon apache will call it as httpd
+
+
+
+
+drwxrwxr-x 3 ec2-user ec2-user 22 Oct 26 02:33 awsclasses
+
+
+rwx
+r:read 4
+w:write 2
+x:execuite 1
+
+
+
+-rw-r--r-- 1 root     root      0 Oct 28 02:33 demo.txt
+
+chmod 700 <filename>
+
+
+
+rwx  rwx  r-x
+7     7     5
+
+
+drwxr-xr-x 2 root     root      6 Oct 28 02:22 test
+
+
+
+to change the file permissions in linux
+
+chmod <permissions> <filename>
+
+
+tochange the owner permissions to file or folder in linux
+
+chown -R <user>:<group> M<file or foldername>
+
+
+
+Lab2::Launch an ec instance
+install Apache in that instance
+create a file call index.html
+try to host the index.html page in browser
+
+try to change the file or folder and user permissions to file or folder
+
+
+linux -----> ssh.......>22
+windows........>RDP.......>3389
+
+
+
+
+Lab3: Launch a winodws instance and login into it
+Launch an linux instance and login to the machine from the windowsw instance
+Block the access from your local machine
+
+Block an website in your laptop
+
+c:/windows/system32/drivers/hosts
+
+127.0.0.1 <website>
+
+
+VPC: Virtual private cloud
+....
+
+256
+
+
+10.0.0.0
+10.0.0.1
+10.0.0.2
+
+
+command to copy the file from server to server in lunux
+
+scp: secure copy
+
+
+
+400
+
+
+Load Balancers:
+...............
+Three types of loadbalancers
+
+1.clasic load balander
+2.Application Loadbalancer
+3.Network Loadbalancer
+
+
+
+
+reverse Proxy
+Foward proxy
+
+Intnet..............> intranet Reverse proxy
+intranet.............> Internet Forward Proxy
+
+
+
+
+Lab4: Create a vpc, take the cidr /24   
+create the subnets with 16 ips Each
+Launch a linux machine in public subnets
+Launch a Windows machine in public subnet
+Launch a linux machine in  private machine
+install apache in privite machine
+
+
+
+#! /bin/bash
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+
+
+how to add user in linux
+sudo useradd <username>
+sudo passwd <usernmae>
+
+cd /etc/ssh
+vi sshd_config
+#set the line numbers in vi editor
+: set nu
+#search the word called passwordAuthentication no
+comment the line passwordAuthentication no
+uncomment the line passwordAuthentication yes
+save the file (esc:wq!)
+sudo systemctl restart sshd
+exit
+try to login with the user which you created now
+
+# provide the sudo permissions to the user
+
+sudo visudo
+go to line 100
+#copy the 100th line(yyp)
+in root place add user name
+exit
+try to login with your user
+
+
+Launching models of ec2 instances:
+
+On-Demand
+Reserved
+Spot instances
+
+059e4e05c67a47bb6
+
+EBS is like a hard disk for ec2 instance.
+EBS volumes are block level store
+EBS offers different types of volumes designed for different use cases.
+EBS volumes are persistent, that is data stored is permanent.
+EBS volumes are highly durable, scalable
+AWS manages redundant copies(2 copies) of the same data in the same AZ.
+We can detach a volume from an instance and attach to different instances.
+At any point of time EBS volumes can be resized(can increase but can’t decrease)
+Can we migrate EBS volume to another AZ or Region?
+Yeah, take a snapshot(EBS backup) and move it.
+Backups of EBS volumes are called snapshots, backups are stored in S3(Simple Storage Service)
+Root Volume & EBS Volume
+Root volume is the main volume where operating system is hosted
+EBS volume is the additional volume, where we run applications.
+Can we encrypt root and data volumes?
+Yes
+How do you attach new EBS volumes?(FAQ)
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
+
+Create EBS Volume
+Attach volume to EC2
+Log on to EC2 and list volumes
+lsblk
+Create file system( don’t create file system if you are restoring from snapshot)
+sudo mkfs.ext4 /dev/xvdf
+Create mount point
+sudo mkdir /app
+Mount the disk on above path
+sudo mount /dev/xvdf /app/
+Automount EBS volume when ec2 reboots.
+Make an entry in fstab file 
+
+EBS Volume Exercises
+Attach additional volume, Configure auto mount for newly attached volumes
+Check how to resize newly added volumes
+
+
+
+
+
+Now, login to your ec2 instance and list the available disks using the following command.
+
+ lsblk
+ 
+ Check if the volume has any data using the following command.
+ 
+ sudo file -s /dev/xvdf
+ 
+ Format the volume to the ext4 filesystem using the following command.
+ 
+ sudo mkfs -t ext4 /dev/xvdf
+ 
+ Create a directory of your choice to mount our new ext4 volume. I am using the name “newvolume“. You can name it something meaningful to you.
+
+sudo mkdir /newvolume
+
+Mount the volume to “newvolume” directory using the following command.
+
+sudo mount /dev/xvdf /newvolume/
+
+cd into newvolume directory and check the disk space to validate the volume mount.
+
+cd /newvolume
+df -h .
+
+
+
+To unmount the volume, use the unmount command as shown below..
+
+umount /dev/xvdf
+
+
+
+Step 1: Back up the /etc/fstab file.
+
+sudo cp /etc/fstab /etc/fstab.bak
+Step 2: Open /etc/fstab file and make an entry in the following format.
+
+device_name mount_point file_system_type fs_mntops fs_freq fs_passno
+For example,
+
+/dev/xvdf       /newvolume   ext4    defaults,nofail        0       0
+Step 3: Execute the following command to check id the fstab file has any error.
+
+sudo mount -a
+
+Lab:
+Launch one ec2-instance
+create a volume with the size 30G
+Attach it to ec2-instance
+create some files in new disk
+Add the disk to oslevel
+rebbot the server and check the status
+
+EBS: Performance is measured by 
+
+IOPS: Read/Write I/O (IPOS)
+Latency: Time between I/O Submision and completion(ms)
+Throughput: Read/Write transfer rate(MB/s)
+
+EBS VOLUME TYPES:
+..................
+SSD:Solid state drives
+HDD:Hard disk drives
+
+General purpose SSD1TB-16TB
+Provisioned IOPS SSD 
+
+Throughput Optimized HDD(st1)
+cold HDD(SC1)
+
+IAM: Identity and Access Management
+
+costom policy
+inline policy
+
+
+
+Lab:
+....
+Create a user in AWS
+Provide Admin access to that user
+try to login with IAM user
+
+120 policies
+
+dev
+test
+operations
+
+
+s3: Simple storage service
+
+How to create s3 bucket
+how to upload obejects to s3 bucket though console
+how to make public both bucket and objects
+s3 life cycle
+
+copy the file from local to s3
+
+aws s3 cp <filename> s3://My-bucket-name
+
+
+lab:
+....
+SBI
+KOTAK
+ICICI
+
+.com
+.in
+.co.in
+
+
+godaddy
+bluehost
+aws 
+
+
+devopslearning.com
+
+
+Maintain current Instance level at all the time.
+
+Manual scaling
+
+Scale based up on schedule
+
+scale based upon demand
+
+
+
+10 to 6 (4)
+
+6 pm to 9:00 pm (3)
+
+9pm to 8:00 am (2)
+
+8:00 am to 10:00 am (3)
+
+
+40%
+
+What is Devops?
+
+Planning
+Requirements Analysis
+Design
+Develop
+Integration & Test
+Deployment
+Maintainance
+
+
+SDLC MODELS:
+............
+waterfall model
+V-shaped Model
+Incrtemental Model
+Squeral Model
+Agil Model
+
+
+
+DevOps Topics:
+...............
+scm (git)
+Jenkins CICD (Maven,Tomcat, Sonarqube, Nexus)
+Ansible (Configuration management)
+Docker (Container Technology)
+Kubernetes(Orchistation)
+Nagios
+
+
+scm: source code management
+...........................
+what is git? distributed version control system
+what is svn? central version control system
+difference between svn and git
+what is the difference between git and github
+Git Archaticture
+Install Git in our local
+create an github account
+create an empty repository?
+
+
+git is an cli tool where as github is an repostory 
+
+what is git branch?
+how to list branches in local? git branch --list
+how to list branches in remote? git branch -a
+how to cretae branch in local?git branch <branch name>
+How to switch the branch?git checkout <branch name>
+how to create branch in central? git push origin <branch name> from the ui
+how to push the code to perticular branch in remote?it push origin <branch name>
+how to delete the branch in local and central? git branch -d <branch name>
+How to merge the code to defferent branch?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
