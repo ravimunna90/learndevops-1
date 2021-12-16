@@ -559,6 +559,37 @@ how to delete the branch in local and central? git branch -d <branch name>
 How to merge the code to defferent branch?
 
 
+What is tag?
+when we wii use tags?
+how many types of tags ?
+lightweighted
+annotated
+what is lightweighted tag ? How to create it?
+what is annotated tag? How to create it?
+How to check the commits in local?
+How to create a tag to older commits?
+How to cherck a perticular tag?
+How to list all tags?
+How to push tags to remote repo?
+how to delete a tag in local
+how to delete atag in remote
+how to check logs in pretty mode?
+
+
+what is git merge and rebase
+when we will use git merge
+when we will use git rebase
+git merge vs git rebase
+
+
+
+
+
+
+
+
+
+
 
 
 
