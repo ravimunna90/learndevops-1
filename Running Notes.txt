@@ -583,225 +583,101 @@ git merge vs git rebase
 
 
 
+git reset 
+git revert
 
+how to undo the working directory changes? git restore <file>
+how to undo the all files in working directory? git restore .
+how to undo the local commit changes? git reset
+what is git rest?
+how many ways we can do we can do git rest?
+soft-----> hard-----> mixed
 
+how to change remote commit changes?
+what is git stash?
 
 
+java-->compile the code......> execuite the code.................> 
+Installation of java
+Yum packages
+with the help of wget 
+set the path
 
 
+build tools:
+............
+What is build tool?
+Ant Maven Gradle Npm
+what is maven?
+what is the difference between Ant and Maven?
+Maven lifecycle
+push the project to github
 
 
 
 
+src
+libraries
+images
+xml
 
+Ant
+maven---->
+Gradle
+npm
 
 
+Ant----> build.xml
 
+Ant doesn't have fromal conversion, so we need to provide the inforamtion
+of the project structure in build.xml.
 
+Ant is procedural, you neede to provide inforamtion about what to do through code, you need to provide the order
 
 
+Ant doesn't have any life cylcle
 
 
+it is a build tool
+Ant scripts are not reusuable
 
 
+Maven----> pom.xml
+Mavenn ha a conversion to place source code, compiled code etc. so we doesn't need to provie inforamtion about the project strucu=ture in pom.xml
 
+There is alife cycled for mavwn
 
+it is a framework
 
+It is mainly a project managemewnt tool
 
+scripts are reusuable
 
+mvn archetype:generate -DgroupId=com.learndevops.app -DartifactId=learndevops -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
 
+/opt/maven
 
+ci/cd tools:
 
+CI: continious integration
 
+Bamboo
+cicrcle CI
+Jenkins
+Aws commit, build,deploy
+Azure devops
+bitbucket pipelines
+gitlabci
 
 
+java
+rpm----packages
+war
 
+jenkins default home /var/lib/jenkins
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+PollSCM  
+BuildPeriodically 
+Webhooks
