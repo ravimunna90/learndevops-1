@@ -1,0 +1,59 @@
+pipeline {
+    agent {
+  label 'slave'
+}
+     environment {
+  PATH = "/opt/maven/bin:$PATH"
+}
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+		stage('checkout') {
+		steps {
+		checkout(
+		[
+		$class: 'GitSCM', 
+		branches: [
+		[name: '*/master'
+		]
+		], 
+		extensions: [
+		],
+		userRemoteConfigs: [
+		[
+		credentialsId: 'Github', url: 'https://github.com/Bhanukiran213/hello-world-war.git']
+		]
+		]
+		)
+    }
+}
+  stage('build'){
+  steps{
+  sh 'mvn package'
+  }
+ }
+ stage ('Artifact upload') {
+ steps{
+ nexusArtifactUploader artifacts: 
+ [
+ [
+ artifactId: 'hello-world-war', 
+ classifier: '',
+ file: '/home/ec2-user/workspace/devopslearning/target/hello-world-war-2.0.3.war', 
+ type: 'war'
+ ]
+ ], 
+ credentialsId: 'Nexus-cred',
+ groupId: 'com.efsavage',
+ nexusUrl: '15.206.211.97:8081', 
+ nexusVersion: 'nexus3', 
+ protocol: 'http', 
+ repository: 'myrepo', 
+ version: '2.0.3' 
+   }
+  }
+ }
+} 
