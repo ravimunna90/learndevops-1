@@ -43,7 +43,7 @@ pipeline {
  [
  artifactId: 'hello-world-war', 
  classifier: '',
- file: 'target/hello-world-war-2.0.0.war', 
+ file: 'target/hello-world-war-2.0.3.war', 
  type: 'war'
  ]
  ], 
@@ -53,7 +53,7 @@ pipeline {
  nexusVersion: 'nexus3', 
  protocol: 'http', 
  repository: 'myrepo', 
- version: '2.0.0' 
+ version: '2.0.3' 
    }
   }
   stage('deploy'){
@@ -67,7 +67,7 @@ pipeline {
                     url: 'http://35.154.244.119:8080'
                     )
                     ],
-                     contextPath: 'dev', war: '**/*.war'
+                     contextPath: 'learndevops', war: '**/*.war'
       }
   }
   }
