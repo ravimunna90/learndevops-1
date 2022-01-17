@@ -38,12 +38,13 @@ pipeline {
  }
  stage ('Artifact upload') {
  steps{
+     def mavenPom = readMavenPom 'pom.xml'
  nexusArtifactUploader artifacts: 
  [
  [
  artifactId: 'hello-world-war', 
  classifier: '',
- file: 'target/hello-world-war-2.0.3.war', 
+ file: "target/hello-world-war-${mavenPom.version}.war", 
  type: 'war'
  ]
  ], 
@@ -53,7 +54,7 @@ pipeline {
  nexusVersion: 'nexus3', 
  protocol: 'http', 
  repository: 'myrepo', 
- version: '2.0.3' 
+ version: "${mavenPom.version}" 
    }
   }
   stage('deploy'){
@@ -67,7 +68,7 @@ pipeline {
                     url: 'http://35.154.244.119:8080'
                     )
                     ],
-                     contextPath: 'learndevops', war: '**/*.war'
+                     contextPath: 'dev', war: '**/*.war'
       }
   }
   }
