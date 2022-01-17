@@ -38,14 +38,15 @@ pipeline {
  }
  stage ('Artifact upload') {
  steps{
+     script{
      def mavenPom = readMavenPom 'pom.xml'
- nexusArtifactUploader artifacts: 
- [
- [
- artifactId: 'hello-world-war', 
- classifier: '',
- file: "target/hello-world-war-${mavenPom.version}.war", 
- type: 'war'
+     nexusArtifactUploader artifacts: 
+    [
+    [
+     artifactId: 'hello-world-war', 
+     classifier: '',
+    file: "target/hello-world-war-${mavenPom.version}.war", 
+    type: 'war'
  ]
  ], 
  credentialsId: 'Nexus-cred',
@@ -55,6 +56,7 @@ pipeline {
  protocol: 'http', 
  repository: 'myrepo', 
  version: "${mavenPom.version}" 
+     }
    }
   }
   stage('deploy'){
