@@ -1,0 +1,77 @@
+pipeline {
+  parameters {
+  choice choices: ['dev', 'stg', 'master'], description: 'Please select your branch', name: 'Branch'
+}
+    agent any
+     environment {
+  PATH = "/opt/maven/bin:$PATH"
+}
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+		stage('checkout') {
+		steps {
+		checkout(
+		[
+		$class: 'GitSCM', 
+		branches: [
+		[name: "*/${Branch}"
+		]
+		], 
+		extensions: [
+		],
+		userRemoteConfigs: [
+		[
+		credentialsId: 'Github', url: 'https://github.com/Bhanukiran213/hello-world-war.git']
+		]
+		]
+		)
+    }
+}
+  stage('build'){
+  steps{
+  sh 'mvn package'
+  }
+ }
+ stage ('Artifact upload') {
+ steps{
+     script{
+     def mavenPom = readMavenPom file: 'pom.xml'
+     nexusArtifactUploader artifacts: 
+    [
+    [
+     artifactId: 'hello-world-war', 
+     classifier: '',
+    file: "target/hello-world-war-${mavenPom.version}.war", 
+    type: 'war'
+ ]
+ ], 
+ credentialsId: 'Nexus-cred',
+ groupId: 'com.efsavage',
+ nexusUrl: '52.66.237.71:8081', 
+ nexusVersion: 'nexus3', 
+ protocol: 'http', 
+ repository: 'myrepo', 
+ version: "${mavenPom.version}" 
+     }
+   }
+  }
+  stage('deploy'){
+      steps{
+          deploy adapters: 
+          [
+              tomcat8
+              (
+                  credentialsId: 'tomcat-cred2',
+                   path: '',
+                    url: 'http://35.154.244.119:8080'
+                    )
+                    ],
+                     contextPath: 'dev', war: '**/*.war'
+      }
+  }
+  }
+}
